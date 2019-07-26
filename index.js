@@ -57,7 +57,7 @@ const printPDF = async () => {
   await page.setContent(html);
 
   console.log('Generate PDF cards...')
-  const pdf = await page.pdf({ path: 'cards.pdf',format: 'A4' });
+  const pdf = await page.pdf({ path: 'export.pdf',format: 'A4' });
   console.log('PDF cards generated ✨')
 
   await browser.close();
