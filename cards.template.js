@@ -1,4 +1,4 @@
-<html>
+module.exports = `<html>
   <head>
     <style type="text/css">
       html,body {
@@ -111,3 +111,4 @@
     <% }); %>
   </body>
 </html>
+`

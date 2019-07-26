@@ -1,4 +1,4 @@
-<div class="card">
+module.exports = `<div class="card">
   <div class="card-header">
     <div class="card-title"><%= card.title %></div>
   </div>
@@ -23,3 +23,4 @@
     </div>
   </div>
 </div>
+`

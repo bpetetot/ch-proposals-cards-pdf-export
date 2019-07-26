@@ -1,6 +1,9 @@
 const fs = require('fs')
 const { template, slice, pick, isNil } = require('lodash')
 
+const cardTemplate = require('./card.template.js')
+const cardsTemplate = require('./cards.template.js')
+
 const file = fs.readFileSync('./export.json')
 const data = JSON.parse(file)
 
@@ -29,10 +32,9 @@ const getCards = ({ speakers, formats, categories, talks }) => {
   })
 }
 
-const cardTemplateFile = fs.readFileSync('./card.template')
-const cardTemplate = template(cardTemplateFile)
+const cardTemplateCompiled = template(cardTemplate)
 
-const cards = getCards(data).map(card => cardTemplate({ card }))
+const cards = getCards(data).map(card => cardTemplateCompiled({ card }))
 
 const PAGE_SIZE = 8
 const pages = []
@@ -41,12 +43,8 @@ for (let i = 0; i < cards.length; i = i + PAGE_SIZE) {
   pages.push(page)
 }
 
-const exportTemplateFile = fs.readFileSync('./export.template')
-const exportTemplate = template(exportTemplateFile)
+const cardsTemplateCompiled = template(cardsTemplate)
 
-const exportHtml = exportTemplate({ pages })
+const cardsHtml = cardsTemplateCompiled({ pages })
 
-
-fs.writeFileSync("export.html", exportHtml)
-
-console.log(exportHtml)
+console.log(cardsHtml)
